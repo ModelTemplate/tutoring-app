@@ -7,10 +7,10 @@ namespace tutoring_app.Models
 {
     public class Subject
     {
-        public string SubjectID { get; set; }
-        public string SubName { get; set; }
-        public int SubCode { get; set; }
-        public int SubLevel { get; set; }
-        public string SubDescritption { get; set; }
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public int Code { get; set; }
+        public int Level { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -7,9 +7,8 @@ namespace tutoring_app.Models
 {
     public class Login
     {
-        public int LoginID { get; set; }
-        public string LogName { get; set; }
-        public int LogNumber { get; set; }
+        public int ID { get; set; }
+        public string Username { get; set; }
 
     }
 }

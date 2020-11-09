@@ -7,9 +7,8 @@ namespace tutoring_app.Models
 {
     public class Schedule
     {
-        public string ScheduleID { get; set; }
+        public string ID { get; set; }
         public int Time { get; set; }
         public int Date { get; set; }
-        public string Day { get; set; }
     }
 }
