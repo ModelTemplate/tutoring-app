@@ -7,6 +7,14 @@ namespace tutoring_app.Models
 {
     public class Student
     {
-        public int ID { get; set; }
+        public int StudentID { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
+        public int phone { get; set; }
+        public int email { get; set; }
     }
 }
