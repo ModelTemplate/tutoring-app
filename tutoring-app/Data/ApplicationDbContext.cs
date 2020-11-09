@@ -16,6 +16,7 @@ namespace tutoring_app.Data
 
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
         public DbSet<Tutor> Tutors { get; set; }
     }
 }
