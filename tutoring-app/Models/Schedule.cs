@@ -8,5 +8,10 @@ namespace tutoring_app.Models
     public class Schedule
     {
         public int ID { get; set; }
+
+        public Schedule(int id)
+        {
+            ID = id;
+        }
     }
 }
