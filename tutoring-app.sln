@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tutoring-app", "tutoring-app\tutoring-app.csproj", "{5EAB4DC5-68F2-48DE-95C0-F7811F4BBC9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tutoring-app", "tutoring-app\tutoring-app.csproj", "{5EAB4DC5-68F2-48DE-95C0-F7811F4BBC9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tutoring-app-test", "tutoring-app-test\tutoring-app-test.csproj", "{44566AD8-5760-4C4B-A2D1-6F45CC1F06F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5EAB4DC5-68F2-48DE-95C0-F7811F4BBC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EAB4DC5-68F2-48DE-95C0-F7811F4BBC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EAB4DC5-68F2-48DE-95C0-F7811F4BBC9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44566AD8-5760-4C4B-A2D1-6F45CC1F06F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44566AD8-5760-4C4B-A2D1-6F45CC1F06F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44566AD8-5760-4C4B-A2D1-6F45CC1F06F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44566AD8-5760-4C4B-A2D1-6F45CC1F06F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

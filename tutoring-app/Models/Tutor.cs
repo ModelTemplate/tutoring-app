@@ -10,6 +10,5 @@ namespace tutoring_app.Models
     /// </summary>
     public class Tutor : User
     {
-
     }
 }
