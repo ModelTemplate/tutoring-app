@@ -8,7 +8,7 @@ namespace tutoring_app.Models
     /// <summary>
     /// Represents a user of this web app
     /// </summary>
-    public class User
+    public abstract class User
     {
         public int ID { get; set; }
         public string FirstName { get; set; }

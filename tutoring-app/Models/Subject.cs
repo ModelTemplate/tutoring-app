@@ -12,8 +12,7 @@ namespace tutoring_app.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int Code { get; set; }
-        public int Level { get; set; }
+        public int Level { get; set; }  // grade level (e.g. Calculus 1 vs. Calculus 2)
         public string Description { get; set; }
     }
 }
