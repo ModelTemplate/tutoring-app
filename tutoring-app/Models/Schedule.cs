@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 
 namespace tutoring_app.Models
 {
+    /// <summary>
+    /// Represents a tutoring schedule between a student and a tutor
+    /// </summary>
     public class Schedule
     {
         public int ID { get; set; }
-        public int Time { get; set; }
-        public int Date { get; set; }
+        public DateTime Date { get; set; }
+        public Student Student { get; set; }
+        public Tutor Tutor { get; set; }
     }
 }

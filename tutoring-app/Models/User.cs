@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace tutoring_app.Models
 {
+    /// <summary>
+    /// Represents a user of this web app
+    /// </summary>
     public class User
     {
         public int ID { get; set; }
