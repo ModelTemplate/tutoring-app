@@ -14,5 +14,6 @@ namespace tutoring_app.Models
         public string Name { get; set; }
         public int Level { get; set; }  // grade level (e.g. Calculus 1 vs. Calculus 2)
         public string Description { get; set; }
+        public string SubjectInfo() { return Name + " " + Level; } //created for UnitTesting
     }
 }
