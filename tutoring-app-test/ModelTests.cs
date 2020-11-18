@@ -70,7 +70,7 @@ namespace tutoring_app_test
             subject.Name = name;
             subject.Level = level;
 
-            Assert.True(subject.Name + " " + subject.Level == expected);
+            Assert.True(subject.SubjectInfo() == expected);
         }
     }
 }
