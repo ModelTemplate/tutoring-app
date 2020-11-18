@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tutoring_app.Data;
 
-namespace tutoring_app.Data.Migrations
+namespace tutoring_app.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201113024211_RenameId")]
-    partial class RenameId
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,13 +226,20 @@ namespace tutoring_app.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Date")
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("StudentID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Time")
+                    b.Property<int?>("TutorID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("StudentID");
+
+                    b.HasIndex("TutorID");
 
                     b.ToTable("Schedules");
                 });
@@ -249,8 +254,8 @@ namespace tutoring_app.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Email")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -268,11 +273,10 @@ namespace tutoring_app.Data.Migrations
 
             modelBuilder.Entity("tutoring_app.Models.Subject", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Code")
-                        .HasColumnType("int");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -298,8 +302,8 @@ namespace tutoring_app.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Email")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -364,6 +368,17 @@ namespace tutoring_app.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("tutoring_app.Models.Schedule", b =>
+                {
+                    b.HasOne("tutoring_app.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID");
+
+                    b.HasOne("tutoring_app.Models.Tutor", "Tutor")
+                        .WithMany()
+                        .HasForeignKey("TutorID");
                 });
 #pragma warning restore 612, 618
         }
