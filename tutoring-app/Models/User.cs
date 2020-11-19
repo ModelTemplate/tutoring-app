@@ -16,5 +16,9 @@ namespace tutoring_app.Models
         public string Address { get; set; }
         public int Phone { get; set; }
         public string Email { get; set; }
+        public string FullName()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }
