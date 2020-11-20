@@ -21,6 +21,7 @@ namespace tutoring_app.Controllers
         }
 
         // GET: Schedule
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Schedules.ToListAsync());
