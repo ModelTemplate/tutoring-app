@@ -3,9 +3,27 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1 class="display-4">Schedule</h1>
+            <p>
+               Schedule your learning session today.
+               You can pick any date and time that fits your schedule.
+              
+            </p>
+            <div align="center">
+                <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
+            </div>
+        </div>
+        <div class="col-sm">
+            <img src="~/img/calendar1.jpg" width="500" alt="calendar icon" />
+            
+        </div>
+    </div>
+    <hr />
+   
+</div>
 <p>
     <a asp-action="Create">Create New</a>
 </p>

@@ -35,7 +35,7 @@ namespace tutoring_app.Controllers
                 return NotFound();
             }
 
-            var schedule = await _context.Schedules
+            var schedule = await _context.Schedules.Include("Student").Include("Tutor")
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (schedule == null)
             {
@@ -150,7 +150,7 @@ namespace tutoring_app.Controllers
                 return NotFound();
             }
 
-            var schedule = await _context.Schedules
+            var schedule = await _context.Schedules.Include("Student").Include("Tutor")
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (schedule == null)
             {
