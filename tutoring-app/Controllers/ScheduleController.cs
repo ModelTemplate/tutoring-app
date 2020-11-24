@@ -21,10 +21,9 @@ namespace tutoring_app.Controllers
         }
 
         // GET: Schedule
-        [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Schedules.ToListAsync());
+            return View(await _context.Schedules.Include("Student").Include("Tutor").ToListAsync());
         }
 
         // GET: Schedule/Details/5
@@ -50,7 +49,17 @@ namespace tutoring_app.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            return View();
+            // Create a view model to hold data required to render the view
+            CreateScheduleViewModel viewModel = new CreateScheduleViewModel();
+
+            List<Student> stundetList = _context.Students.ToList<Student>();
+            List<Tutor> tutorList = _context.Tutors.ToList<Tutor>();
+
+            viewModel.Students = stundetList;
+            viewModel.Tutors = tutorList;
+            viewModel.Date = DateTime.Now;
+
+            return View(viewModel);
         }
 
         // POST: Schedule/Create
@@ -59,14 +68,23 @@ namespace tutoring_app.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("ID,Date")] Schedule schedule)
+        public async Task<IActionResult> Create([Bind("SelectedStudentId,SelectedTutorId,Date")] CreateScheduleViewModel scheduleDetails)
         {
+            Schedule schedule = new Schedule();
+
             if (ModelState.IsValid)
             {
+                schedule.Date = scheduleDetails.Date;
+
+                schedule.Student = _context.Students.Find(scheduleDetails.SelectedStudentId);
+
+                schedule.Tutor = _context.Tutors.Find(scheduleDetails.SelectedTutorId);
+
                 _context.Add(schedule);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(schedule);
         }
 
