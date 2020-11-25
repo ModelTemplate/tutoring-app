@@ -37,6 +37,9 @@
                 @Html.DisplayNameFor(model => model.Tutor)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th></th>
@@ -50,6 +53,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tutor.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
