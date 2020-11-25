@@ -19,6 +19,11 @@ namespace tutoring_app.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        public AccountController(UserManager<User> userManager)
+        {
+            UserManager = userManager;
+        }
+
         public enum ManageMessageId
         {
             ChangePasswordSuccess,
@@ -29,11 +34,6 @@ namespace tutoring_app.Controllers
 
         // API for managing users in a database 
         public UserManager<User> UserManager { get; private set; }
-
-        public AccountController(UserManager<User> userManager)
-        {
-            UserManager = userManager;
-        }
 
         // GET: Account/Login
         [HttpGet]
