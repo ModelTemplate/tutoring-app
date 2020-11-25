@@ -10,5 +10,6 @@ namespace tutoring_app.Models
     /// </summary>
     public class Tutor : User
     {
+        public List<Subject> QualifiedSubjects { get; set; }
     }
 }

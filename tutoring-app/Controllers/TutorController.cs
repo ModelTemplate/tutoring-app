@@ -37,7 +37,7 @@ namespace tutoring_app.Controllers
             }
 
             var tutor = await _context.Tutors
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (tutor == null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace tutoring_app.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
         {
             if (ModelState.IsValid)
             {
@@ -93,9 +93,9 @@ namespace tutoring_app.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
         {
-            if (id != tutor.ID)
+            if (id != tutor.Id)
             {
                 return NotFound();
             }
@@ -109,7 +109,7 @@ namespace tutoring_app.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TutorExists(tutor.ID))
+                    if (!TutorExists(tutor.Id))
                     {
                         return NotFound();
                     }
@@ -133,7 +133,7 @@ namespace tutoring_app.Controllers
             }
 
             var tutor = await _context.Tutors
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (tutor == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace tutoring_app.Controllers
 
         private bool TutorExists(int id)
         {
-            return _context.Tutors.Any(e => e.ID == id);
+            return _context.Tutors.Any(e => e.Id == id);
         }
     }
 }

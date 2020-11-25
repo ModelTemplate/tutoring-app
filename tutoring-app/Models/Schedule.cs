@@ -10,7 +10,7 @@ namespace tutoring_app.Models
     /// </summary>
     public class Schedule
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public Student Student { get; set; }
         public Tutor Tutor { get; set; }

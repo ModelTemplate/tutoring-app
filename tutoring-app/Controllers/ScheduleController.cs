@@ -37,7 +37,7 @@ namespace tutoring_app.Controllers
             }
 
             var schedule = await _context.Schedules
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (schedule == null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace tutoring_app.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("ID,Date")] Schedule schedule)
+        public async Task<IActionResult> Create([Bind("Id,Date")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -93,9 +93,9 @@ namespace tutoring_app.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Date")] Schedule schedule)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date")] Schedule schedule)
         {
-            if (id != schedule.ID)
+            if (id != schedule.Id)
             {
                 return NotFound();
             }
@@ -109,7 +109,7 @@ namespace tutoring_app.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScheduleExists(schedule.ID))
+                    if (!ScheduleExists(schedule.Id))
                     {
                         return NotFound();
                     }
@@ -133,7 +133,7 @@ namespace tutoring_app.Controllers
             }
 
             var schedule = await _context.Schedules
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (schedule == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace tutoring_app.Controllers
 
         private bool ScheduleExists(int id)
         {
-            return _context.Schedules.Any(e => e.ID == id);
+            return _context.Schedules.Any(e => e.Id == id);
         }
     }
 }

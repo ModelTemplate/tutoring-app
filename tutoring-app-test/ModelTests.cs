@@ -24,7 +24,7 @@ namespace tutoring_app_test
             student.FirstName = first;
             student.LastName = last;
 
-            Assert.True(student.FullName() == expected);
+            Assert.True(student.FirstName + " " + student.LastName == expected);
         }
     }
 
@@ -47,7 +47,7 @@ namespace tutoring_app_test
             tutor.FirstName = first;
             tutor.LastName = last;
 
-            Assert.True(tutor.FullName() == expected);
+            Assert.True(tutor.FirstName + " " + tutor.LastName == expected);
         }
     }
 

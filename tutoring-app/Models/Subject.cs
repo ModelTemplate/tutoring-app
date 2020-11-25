@@ -10,7 +10,7 @@ namespace tutoring_app.Models
     /// </summary>
     public class Subject
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }  // grade level (e.g. Calculus 1 vs. Calculus 2)
         public string Description { get; set; }

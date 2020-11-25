@@ -10,5 +10,6 @@ namespace tutoring_app.Models
     /// </summary>
     public class Student : User
     {
+        public string Grade { get; set; }
     }
 }
