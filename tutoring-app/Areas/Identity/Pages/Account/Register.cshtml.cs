@@ -45,10 +45,26 @@ namespace tutoring_app.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Email address required.")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+            public string Name { get; set; }
+
+            [Required(ErrorMessage = "First name required.")]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required(ErrorMessage = "Last name required.")]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
+            [StringLength(9, ErrorMessage = "Invalid phone number.", MinimumLength = 9)]
+            [Display(Name = "Phone Number")]
+            public string PhoneNumber { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -57,7 +73,7 @@ namespace tutoring_app.Areas.Identity.Pages.Account
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirm Password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
