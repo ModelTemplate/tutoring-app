@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -79,7 +78,7 @@ namespace tutoring_app.Areas.Identity.Account
             [DataType(DataType.Password)]
             [Display(Name = "Confirm Password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
+            /*public string ConfirmPassword { get; set; }*/
         }
 
         public async Task OnGetAsync(string returnUrl = null)
