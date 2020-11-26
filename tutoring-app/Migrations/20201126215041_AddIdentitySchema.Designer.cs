@@ -10,8 +10,8 @@ using tutoring_app.Data;
 namespace tutoring_app.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201125063627_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20201126215041_AddIdentitySchema")]
+    partial class AddIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,12 +164,10 @@ namespace tutoring_app.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -206,12 +204,10 @@ namespace tutoring_app.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");

@@ -48,6 +48,8 @@ namespace tutoring_app
                 options.AddPolicy("writepolicy",
                     builder => builder.RequireRole("Admin"));
             });
+
+            CreateRolesAndUsers(services.BuildServiceProvider());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +81,53 @@ namespace tutoring_app
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+        private async void CreateRolesAndUsers(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            bool roleExists = await roleManager.RoleExistsAsync("Admin");
+
+            // creating Admin role
+            if (!roleExists)
+            {
+                var role = new IdentityRole();
+                role.Name = "Admin";
+                await roleManager.CreateAsync(role);
+
+                // creating admin superuser
+                var user = new IdentityUser();
+                user.Email = "admin@admin.com";
+                string userPassword = "password";
+                IdentityResult checkUser = await userManager.CreateAsync(user, userPassword);
+
+                if (checkUser.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "Admin");
+                }
+            }
+
+            roleExists = await roleManager.RoleExistsAsync("Tutor");
+
+            // creating Tutor role
+            if (!roleExists)
+            {
+                var role = new IdentityRole();
+                role.Name = "Tutor";
+                await roleManager.CreateAsync(role);
+            }
+
+            roleExists = await roleManager.RoleExistsAsync("Student");
+
+            // creating Student role
+            if (!roleExists)
+            {
+                var role = new IdentityRole();
+                role.Name = "Student";
+                await roleManager.CreateAsync(role);
+            }
         }
     }
 }
