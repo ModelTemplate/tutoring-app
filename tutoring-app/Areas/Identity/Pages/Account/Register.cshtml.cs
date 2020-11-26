@@ -49,7 +49,6 @@ namespace tutoring_app.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
-            public string Name { get; set; }
 
             [Required(ErrorMessage = "First name required.")]
             [Display(Name = "First Name")]
