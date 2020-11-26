@@ -16,32 +16,27 @@
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control"
-                       asp-items='new SelectList(roles,"Id","Email")' />
+                       asp-items='new SelectList(roles,"Id","Email")' placeholder="you@yourdomain.com" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.FirstName"></label>
-                <select asp-for="Input.FirstName" class="form-control">
-                        <!--asp-items='new SelectList(roles,"Id","FirstName")'>-->
-                </select>
+                <input asp-for="Input.FirstName" class="form-control" placeholder="John" />
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.LastName"></label>
-                <select asp-for="Input.LastName" class="form-control">
-                </select>
+                <input asp-for="Input.LastName" class="form-control" placeholder="Smith" />
                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Address"></label>
-                <select asp-for="Input.Address" class="form-control">
-                </select>
+                <input asp-for="Input.Address" class="form-control" placeholder="House number, street, city, state, and zip code" />
                 <span asp-validation-for="Input.Address" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.PhoneNumber"></label>
-                <select asp-for="Input.PhoneNumber" class="form-control">
-                </select>
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="425-999-0000"/>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
