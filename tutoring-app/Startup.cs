@@ -12,6 +12,7 @@ using tutoring_app.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using tutoring_app.Models;
 
 namespace tutoring_app
 {
@@ -29,18 +30,19 @@ namespace tutoring_app
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddMvc();
 
             // duplicated code in Areas/Identity/IdentityHostingStartup.cs
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
                 options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("readpolicy",
