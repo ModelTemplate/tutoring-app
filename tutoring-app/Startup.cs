@@ -98,12 +98,17 @@ namespace tutoring_app
                 await roleManager.CreateAsync(role);
 
                 // creating admin superuser
-                var user = new IdentityUser();
-                user.Email = "admin@admin.com";
-                string userPassword = "password";
-                IdentityResult checkUser = await userManager.CreateAsync(user, userPassword);
+                var user = new IdentityUser
+                {
+                    UserName = "admin@admin.com",
+                    Email = "admin@admin.com",
+                    EmailConfirmed = true,
+                };
+                
+                string userPassword = "Password1!";
+                var result = await userManager.CreateAsync(user, userPassword);
 
-                if (checkUser.Succeeded)
+                if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, "Admin");
                 }

@@ -61,16 +61,15 @@ namespace tutoring_app_test
         }
 
         [Theory]
-        [InlineData("Math", 1, "Math 1")]
-        [InlineData("English", 0, "English 0")]
-        [InlineData("Java", 99, "Java 99")]
-        public void CorrectSubjects(string name, int level, string expected)
+        [InlineData("Algebra 1", "Algebra 1")]
+        [InlineData("English Composition", "English Composition")]
+        [InlineData("Java Programming", "Java Programming")]
+        public void CorrectSubjects(string name, string expected)
         {
             Subject subject = new Subject();
             subject.Name = name;
-            subject.Level = level;
 
-            Assert.True(subject.SubjectInfo() == expected);
+            Assert.True(subject.Name == expected);
         }
     }
 }
