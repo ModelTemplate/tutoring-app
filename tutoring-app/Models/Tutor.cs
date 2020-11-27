@@ -12,9 +12,6 @@ namespace tutoring_app.Models
     /// </summary>
     public class Tutor : ApplicationUser
     {
-        [Key]
-        public int Id { get; set; }
-
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
         public List<Subject> QualifiedSubjects { get; set; }

@@ -12,10 +12,7 @@ namespace tutoring_app.Models
     /// </summary>
     public class Student : ApplicationUser
     {
-        [Key]
-        public int Id { get; set; }
-
-        [ForeignKey("UserId")]
+        [ForeignKey("Id")]
         public virtual ApplicationUser User { get; set; }
         public string Grade { get; set; }
     }

@@ -20,9 +20,11 @@ namespace tutoring_app_test
         [InlineData("(*^$^$^", "$&@)(@", "(*^$^$^ $&@)(@")]
         public void CorrectStudentFullName(string first, string last, string expected)
         {
-            Student student = new Student();
-            student.FirstName = first;
-            student.LastName = last;
+            Student student = new Student
+            {
+                FirstName = first,
+                LastName = last
+            };
 
             Assert.True(student.FirstName + " " + student.LastName == expected);
         }
@@ -43,9 +45,11 @@ namespace tutoring_app_test
         [InlineData("(*^$^$^", "$&@)(@", "(*^$^$^ $&@)(@")]
         public void CorrectTutorFullName(string first, string last, string expected)
         {
-            Tutor tutor = new Tutor();
-            tutor.FirstName = first;
-            tutor.LastName = last;
+            Tutor tutor = new Tutor
+            {
+                FirstName = first,
+                LastName = last
+            };
 
             Assert.True(tutor.FirstName + " " + tutor.LastName == expected);
         }
@@ -66,8 +70,10 @@ namespace tutoring_app_test
         [InlineData("Java Programming", "Java Programming")]
         public void CorrectSubjects(string name, string expected)
         {
-            Subject subject = new Subject();
-            subject.Name = name;
+            Subject subject = new Subject
+            {
+                Name = name
+            };
 
             Assert.True(subject.Name == expected);
         }

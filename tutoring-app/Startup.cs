@@ -30,14 +30,14 @@ namespace tutoring_app
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddMvc();
+            // services.AddMvc();
 
             // duplicated code in Areas/Identity/IdentityHostingStartup.cs
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -95,8 +95,10 @@ namespace tutoring_app
             // creating Admin role
             if (!roleExists)
             {
-                var role = new IdentityRole();
-                role.Name = "Admin";
+                var role = new IdentityRole
+                {
+                    Name = "Admin"
+                };
                 await roleManager.CreateAsync(role);
 
                 // creating admin superuser
@@ -121,8 +123,10 @@ namespace tutoring_app
             // creating Tutor role
             if (!roleExists)
             {
-                var role = new IdentityRole();
-                role.Name = "Tutor";
+                var role = new IdentityRole
+                {
+                    Name = "Tutor"
+                };
                 await roleManager.CreateAsync(role);
             }
 
@@ -131,8 +135,10 @@ namespace tutoring_app
             // creating Student role
             if (!roleExists)
             {
-                var role = new IdentityRole();
-                role.Name = "Student";
+                var role = new IdentityRole
+                {
+                    Name = "Student"
+                };
                 await roleManager.CreateAsync(role);
             }
         }
