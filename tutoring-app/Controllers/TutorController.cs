@@ -29,7 +29,7 @@ namespace tutoring_app.Controllers
 
         // GET: Tutor/Details/5
         [Authorize]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -93,7 +93,7 @@ namespace tutoring_app.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
         {
             if (id != tutor.Id)
             {
@@ -125,7 +125,7 @@ namespace tutoring_app.Controllers
 
         // GET: Tutor/Delete/5
         [Authorize]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -146,7 +146,7 @@ namespace tutoring_app.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var tutor = await _context.Tutors.FindAsync(id);
             _context.Tutors.Remove(tutor);
@@ -154,7 +154,7 @@ namespace tutoring_app.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TutorExists(int id)
+        private bool TutorExists(string id)
         {
             return _context.Tutors.Any(e => e.Id == id);
         }

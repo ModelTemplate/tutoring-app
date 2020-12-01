@@ -40,6 +40,12 @@ namespace tutoring_app
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
+                /*
+                .AddUserStore<ApplicationUserStore>()
+                .AddRoleStore<ApplicationRoleStore>()
+                .AddRoleManager<ApplicationRoleManager>
+                .AddSignInManager<ApplicationSignInManager>()
+                */
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             
@@ -55,7 +61,8 @@ namespace tutoring_app
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+            IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
