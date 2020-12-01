@@ -1,4 +1,4 @@
-﻿@model tutoring_app.Models.Schedule
+﻿@model tutoring_app.Models.CreateScheduleViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -12,6 +12,38 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Students" class="control-label" />
+                <select asp-for="SelectedStudentId" class="form-control">
+                    @foreach (Student student in Model.Students)
+                    {
+                        <option value=@student.ID>@student.FullName()</option>
+                    }
+                </select><br />
+            </div>
+            <div class="form-group">
+                <label asp-for="Tutors" class="control-label" />
+                <select asp-for="SelectedTutorId" class="form-control">
+                    @foreach (Tutor tutor in Model.Tutors)
+                    {
+                        <option value=@tutor.ID>@tutor.FullName()</option>
+                    }
+                </select><br />
+            </div>
+            <div class="form-group">
+                <label asp-for="Subjects" class="control-label" />
+                <select asp-for="SelectedSubjectId" class="form-control">
+                    @foreach (Subject subject in Model.Subjects)
+                    {
+                        <option value=@subject.ID>@subject.SubjectInfo()</option>
+                    }
+                </select><br />
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

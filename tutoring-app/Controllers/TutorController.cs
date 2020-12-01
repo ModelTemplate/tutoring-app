@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,12 +21,14 @@ namespace tutoring_app.Controllers
         }
 
         // GET: Tutor
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Tutors.ToListAsync());
         }
 
         // GET: Tutor/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,6 +47,7 @@ namespace tutoring_app.Controllers
         }
 
         // GET: Tutor/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -54,7 +58,8 @@ namespace tutoring_app.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID")] Tutor tutor)
+        [Authorize]
+        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +71,7 @@ namespace tutoring_app.Controllers
         }
 
         // GET: Tutor/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +92,8 @@ namespace tutoring_app.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Tutor tutor)
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName,LastName,Address,Phone,Email")] Tutor tutor)
         {
             if (id != tutor.ID)
             {
@@ -117,6 +124,7 @@ namespace tutoring_app.Controllers
         }
 
         // GET: Tutor/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +145,7 @@ namespace tutoring_app.Controllers
         // POST: Tutor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tutor = await _context.Tutors.FindAsync(id);

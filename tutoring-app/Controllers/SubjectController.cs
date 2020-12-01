@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,23 +10,22 @@ using tutoring_app.Models;
 
 namespace tutoring_app.Controllers
 {
-    public class ScheduleController : Controller
+    public class SubjectController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ScheduleController(ApplicationDbContext context)
+        public SubjectController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Schedule
+        // GET: Subject
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Schedules.Include("Student").Include("Tutor").Include("Subject").ToListAsync());
+            return View(await _context.Subjects.ToListAsync());
         }
 
-        // GET: Schedule/Details/5
-        [Authorize]
+        // GET: Subject/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,65 +33,39 @@ namespace tutoring_app.Controllers
                 return NotFound();
             }
 
-            var schedule = await _context.Schedules.Include("Student").Include("Tutor").Include("Subject")
+            var subject = await _context.Subjects
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (schedule == null)
+            if (subject == null)
             {
                 return NotFound();
             }
 
-            return View(schedule);
+            return View(subject);
         }
 
-        // GET: Schedule/Create
-        [Authorize]
+        // GET: Subject/Create
         public IActionResult Create()
         {
-            // Create a view model to hold data required to render the view
-            CreateScheduleViewModel viewModel = new CreateScheduleViewModel();
-
-            List<Student> stundetList = _context.Students.ToList<Student>();
-            List<Tutor> tutorList = _context.Tutors.ToList<Tutor>();
-            List<Subject> subjectList = _context.Subjects.ToList<Subject>();
-
-            viewModel.Students = stundetList;
-            viewModel.Tutors = tutorList;
-            viewModel.Subjects = subjectList;
-            viewModel.Date = DateTime.Now;
-
-            return View(viewModel);
+            return View();
         }
 
-        // POST: Schedule/Create
+        // POST: Subject/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> Create([Bind("SelectedStudentId,SelectedTutorId,SelectedSubjectId,Date")] CreateScheduleViewModel scheduleDetails)
+        public async Task<IActionResult> Create([Bind("ID,Name,Level,Description")] Subject subject)
         {
-            Schedule schedule = new Schedule();
-
             if (ModelState.IsValid)
             {
-                schedule.Date = scheduleDetails.Date;
-
-                schedule.Student = _context.Students.Find(scheduleDetails.SelectedStudentId);
-
-                schedule.Tutor = _context.Tutors.Find(scheduleDetails.SelectedTutorId);
-
-                schedule.Subject = _context.Subjects.Find(scheduleDetails.SelectedSubjectId);
-
-                _context.Add(schedule);
+                _context.Add(subject);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            return View(schedule);
+            return View(subject);
         }
 
-        // GET: Schedule/Edit/5
-        [Authorize]
+        // GET: Subject/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -101,23 +73,22 @@ namespace tutoring_app.Controllers
                 return NotFound();
             }
 
-            var schedule = await _context.Schedules.FindAsync(id);
-            if (schedule == null)
+            var subject = await _context.Subjects.FindAsync(id);
+            if (subject == null)
             {
                 return NotFound();
             }
-            return View(schedule);
+            return View(subject);
         }
 
-        // POST: Schedule/Edit/5
+        // POST: Subject/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Date")] Schedule schedule)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Level,Description")] Subject subject)
         {
-            if (id != schedule.ID)
+            if (id != subject.ID)
             {
                 return NotFound();
             }
@@ -126,12 +97,12 @@ namespace tutoring_app.Controllers
             {
                 try
                 {
-                    _context.Update(schedule);
+                    _context.Update(subject);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScheduleExists(schedule.ID))
+                    if (!SubjectExists(subject.ID))
                     {
                         return NotFound();
                     }
@@ -142,11 +113,10 @@ namespace tutoring_app.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(schedule);
+            return View(subject);
         }
 
-        // GET: Schedule/Delete/5
-        [Authorize]
+        // GET: Subject/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -154,31 +124,30 @@ namespace tutoring_app.Controllers
                 return NotFound();
             }
 
-            var schedule = await _context.Schedules.Include("Student").Include("Tutor").Include("Subject")
+            var subject = await _context.Subjects
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (schedule == null)
+            if (subject == null)
             {
                 return NotFound();
             }
 
-            return View(schedule);
+            return View(subject);
         }
 
-        // POST: Schedule/Delete/5
+        // POST: Subject/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var schedule = await _context.Schedules.FindAsync(id);
-            _context.Schedules.Remove(schedule);
+            var subject = await _context.Subjects.FindAsync(id);
+            _context.Subjects.Remove(subject);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ScheduleExists(int id)
+        private bool SubjectExists(int id)
         {
-            return _context.Schedules.Any(e => e.ID == id);
+            return _context.Subjects.Any(e => e.ID == id);
         }
     }
 }
