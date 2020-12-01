@@ -4,7 +4,7 @@
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/tutoring1-appdbserver/databases/tutoring1-app_db",
       "type": "mssql.azure",
       "connectionId": "DefaultConnection",
-      "secretStore": "LocalSecretsFile"
+      "secretStore": "AzureAppSettings"
     }
   }
 }
