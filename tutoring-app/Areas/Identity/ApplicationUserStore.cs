@@ -9,11 +9,11 @@ using tutoring_app.Models;
 
 namespace tutoring_app.Areas.Identity
 {
-    public class ApplicationUserStore : UserStore<ApplicationUser>
+    /*public class ApplicationUserStore : UserStore<ApplicationUser>
     {
         public ApplicationUserStore(ApplicationDbContext context)
             : base(context)
         {
         }
-    }
+    }*/
 }

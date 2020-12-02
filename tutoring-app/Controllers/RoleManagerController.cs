@@ -1,37 +1,36 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace tutoring_app.Controllers
 {
-    public class RoleController : Controller
+    public class RoleManagerController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        public RoleManagerController(RoleManager<IdentityRole> roleManager)
         {
             _roleManager = roleManager;
         }
 
         [Authorize(Policy = "readpolicy")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var roles = _roleManager.Roles.ToList();
+            var roles = await _roleManager.Roles.ToListAsync();
             return View(roles);
         }
 
         [Authorize(Policy = "writepolicy")]
-        public IActionResult Create()
-        {
-            return View(new IdentityRole());
-        }
-
         [HttpPost]
-        public async Task<IActionResult> Create(IdentityRole role)
+        public async Task<IActionResult> Create(string roleName)
         {
-            await _roleManager.CreateAsync(role);
+            if (roleName != null)
+            {
+                await _roleManager.CreateAsync(new IdentityRole(roleName.Trim()));
+            }
             return RedirectToAction("Index");
         }
     }

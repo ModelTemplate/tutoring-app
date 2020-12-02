@@ -10,7 +10,7 @@ namespace tutoring_app.Models
     /// </summary>
     public class Subject
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

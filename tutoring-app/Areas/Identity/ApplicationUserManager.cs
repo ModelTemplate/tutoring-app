@@ -11,7 +11,7 @@ using tutoring_app.Models;
 
 namespace tutoring_app.Areas.Identity
 {
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    /*public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(ApplicationUserStore userStore, IOptions<IdentityOptions> optionsAccessor,
         IPasswordHasher<ApplicationUser> passwordHasher, IEnumerable<IUserValidator<ApplicationUser>> userValidators,
@@ -20,5 +20,5 @@ namespace tutoring_app.Areas.Identity
             : base(userStore, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
         }
-    }
+    }*/
 }

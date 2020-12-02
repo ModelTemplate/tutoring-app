@@ -46,7 +46,7 @@ namespace tutoring_app.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSchedule(int id, Schedule schedule)
+        public async Task<IActionResult> PutSchedule(string id, Schedule schedule)
         {
             if (id != schedule.Id)
             {
@@ -102,7 +102,7 @@ namespace tutoring_app.Controllers
             return schedule;
         }
 
-        private bool ScheduleExists(int id)
+        private bool ScheduleExists(string id)
         {
             return _context.Schedules.Any(e => e.Id == id);
         }

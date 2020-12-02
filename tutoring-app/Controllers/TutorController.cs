@@ -72,7 +72,7 @@ namespace tutoring_app.Controllers
 
         // GET: Tutor/Edit/5
         [Authorize]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {

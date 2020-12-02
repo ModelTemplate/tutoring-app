@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using tutoring_app.Models;
+using tutoring_app.Areas.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace tutoring_app
 {
@@ -48,7 +50,7 @@ namespace tutoring_app
                 */
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("readpolicy",
@@ -57,11 +59,12 @@ namespace tutoring_app
                     builder => builder.RequireRole("Admin"));
             });
 
-            CreateRolesAndUsers(services.BuildServiceProvider());
+            // CreateRolesAndUsers(services.BuildServiceProvider());
+            // CreateRolesAndUsers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
             IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
@@ -91,11 +94,17 @@ namespace tutoring_app
                 endpoints.MapRazorPages();
             });
         }
-
-        private async void CreateRolesAndUsers(IServiceProvider serviceProvider)
+    }
+}
+        
+        /*private async void CreateRolesAndUsers(*//*IServiceProvider serviceProvider*//*)
         {
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            // var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            // var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            ApplicationDbContext context = new ApplicationDbContext(null);
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new ApplicationUserStore(context));
 
             bool roleExists = await roleManager.RoleExistsAsync("Admin");
 
@@ -149,5 +158,4 @@ namespace tutoring_app
                 await roleManager.CreateAsync(role);
             }
         }
-    }
-}
+    }*/

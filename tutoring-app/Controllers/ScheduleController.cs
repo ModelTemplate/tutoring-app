@@ -29,7 +29,7 @@ namespace tutoring_app.Controllers
 
         // GET: Schedule/Details/5
         [Authorize]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -72,7 +72,7 @@ namespace tutoring_app.Controllers
 
         // GET: Schedule/Edit/5
         [Authorize]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -93,7 +93,7 @@ namespace tutoring_app.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date")] Schedule schedule)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Date")] Schedule schedule)
         {
             if (id != schedule.Id)
             {
@@ -125,7 +125,7 @@ namespace tutoring_app.Controllers
 
         // GET: Schedule/Delete/5
         [Authorize]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -146,7 +146,7 @@ namespace tutoring_app.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var schedule = await _context.Schedules.FindAsync(id);
             _context.Schedules.Remove(schedule);
@@ -154,7 +154,7 @@ namespace tutoring_app.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ScheduleExists(int id)
+        private bool ScheduleExists(string id)
         {
             return _context.Schedules.Any(e => e.Id == id);
         }

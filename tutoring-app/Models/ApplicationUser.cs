@@ -12,10 +12,16 @@ namespace tutoring_app.Models
     /// </summary>
     public class ApplicationUser : IdentityUser
     {
-        public virtual Tutor Tutor { get; set; }
+        // public virtual Tutor Tutor { get; set; }
         // public virtual Student Student { get; set; }
+
+        [PersonalData]
         public string FirstName { get; set; }
+
+        [PersonalData]
         public string LastName { get; set; }
+
+        [PersonalData]
         public string Address { get; set; }
     }
 }
