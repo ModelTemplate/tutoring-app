@@ -41,8 +41,8 @@ namespace tutoring_app
             services.AddAuthentication()
                 .AddFacebook(options =>
             {
-                options.AppId = Configuration["App:FacebookClientId"];
-                options.ClientSecret = Configuration["App:FAcebookClientSecret"];
+                options.AppId = !string.IsNullOrWhiteSpace(Configuration["App:FacebookClientId"]) ? Configuration["App:FacebookClientId"] : "null";
+                options.ClientSecret = !string.IsNullOrWhiteSpace(Configuration["App:FacebookClientSecret"]) ? Configuration["App:FacebookClientSecret"] : "null";
             });
                
             

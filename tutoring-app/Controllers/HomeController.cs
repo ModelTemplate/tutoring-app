@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,8 +19,36 @@ namespace tutoring_app.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            string qouteString = "";
+            string qouteAuthor = "";
+            HttpClient client = new HttpClient();
+
+            try
+            {
+                var response = await client.GetStringAsync("https://api.quotable.io/random");
+
+                if (string.IsNullOrEmpty(response))
+                {
+                    Debug.WriteLine("Failed to receive response from the quote api");
+                }
+
+                QuoteApiModel qoute = Newtonsoft.Json.JsonConvert.DeserializeObject<QuoteApiModel>(response);
+                if(qoute != null)
+                {
+                    qouteString = qoute.content;
+                    qouteAuthor = qoute.author;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                throw ex;
+            }
+
+            ViewData["QouteString"] = qouteString;
+            ViewData["QouteAuthor"] = qouteAuthor;
+
             return View();
         }
 
