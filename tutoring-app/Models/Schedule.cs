@@ -13,16 +13,22 @@ namespace tutoring_app.Models
     public class Schedule
     {
         [Key]
+        [Required]
         public string Id { get; set; }
+
+        [Required]
         public DateTime Date { get; set; }
 
         [ForeignKey("Id")]
+        [Required]
         public Student Student { get; set; }
 
         [ForeignKey("Id")]
+        [Required]
         public Tutor Tutor { get; set; }
 
         [ForeignKey("Id")]
+        [Required]
         public Subject Subject { get; set; }
     }
 }

@@ -14,7 +14,10 @@ namespace tutoring_app.Models
     public class Student : ApplicationUser
     {
         [ForeignKey("Id")]
+        [Required]
         public virtual ApplicationUser User { get; set; }
+
+        [Required]
         public string Grade { get; set; }
     }
 }

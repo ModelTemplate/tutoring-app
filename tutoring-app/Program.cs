@@ -15,7 +15,7 @@ namespace tutoring_app
 {
     public class Program
     {
-        public async static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
@@ -28,8 +28,8 @@ namespace tutoring_app
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await RolesSeed.SeedRolesAsync(userManager, roleManager);
-                    await RolesSeed.SeedAdminAsync(userManager, roleManager);
+                    RolesSeed.SeedRolesAsync(userManager, roleManager);
+                    RolesSeed.SeedAdminAsync(userManager, roleManager);
                     ContextSeed.Initialize(services);
                 }
                 catch (Exception ex)

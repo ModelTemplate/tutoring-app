@@ -10,7 +10,7 @@ using tutoring_app.Data;
 namespace tutoring_app.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201202221843_AddUserRoles")]
+    [Migration("20201202225913_AddUserRoles")]
     partial class AddUserRoles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
