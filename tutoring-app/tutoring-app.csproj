@@ -15,6 +15,14 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Migrations\20201118232645_User-Update-EmailType.cs" />
+    <Compile Remove="Migrations\20201118232645_User-Update-EmailType.Designer.cs" />
+    <Compile Remove="Migrations\20201126215041_AddIdentitySchema.cs" />
+    <Compile Remove="Migrations\20201126215041_AddIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20201202214731_AddUserRoles.cs" />
+    <Compile Remove="Migrations\20201202214731_AddUserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20201202221628_AddUserRoles.cs" />
+    <Compile Remove="Migrations\20201202221628_AddUserRoles.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

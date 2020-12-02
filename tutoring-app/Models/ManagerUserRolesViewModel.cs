@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace tutoring_app.Models
 {
+    /// <summary>
+    /// View model for managing user roles
+    /// </summary>
     public class ManageUserRolesViewModel
     {
         public string RoleId { get; set; }

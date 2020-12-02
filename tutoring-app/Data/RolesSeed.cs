@@ -9,6 +9,9 @@ using tutoring_app.Models;
 
 namespace tutoring_app.Data
 {
+    /// <summary>
+    /// Seeding the database with these default roles
+    /// </summary>
     public static class RolesSeed
     {
         public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)

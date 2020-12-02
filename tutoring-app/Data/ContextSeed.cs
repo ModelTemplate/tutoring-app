@@ -7,6 +7,9 @@ using tutoring_app.Models;
 
 namespace tutoring_app.Data
 {
+    /// <summary>
+    /// Seeding the database with these default subjects
+    /// </summary>
     public static class ContextSeed
     {
         public static void Initialize(IServiceProvider serviceProvider)
