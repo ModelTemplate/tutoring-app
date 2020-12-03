@@ -38,11 +38,12 @@ namespace tutoring_app
             services.AddControllersWithViews();
             services.AddRazorPages();
             //facebook
+            Console.WriteLine("AppID:::::: " );
             services.AddAuthentication()
                 .AddFacebook(options =>
             {
-                options.AppId = !string.IsNullOrWhiteSpace(Configuration["App:FacebookClientId"]) ? Configuration["App:FacebookClientId"] : "null";
-                options.ClientSecret = !string.IsNullOrWhiteSpace(Configuration["App:FacebookClientSecret"]) ? Configuration["App:FacebookClientSecret"] : "null";
+                options.AppId = "1026050374529913"; //+ Configuration["App: FacebookClientId"]
+                options.ClientSecret = "730c10b6e40f30dc3d63dcfacfd38685";
             });
                
             
