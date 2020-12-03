@@ -17,7 +17,8 @@ namespace tutoring_app.Models
         [Required]
         public virtual ApplicationUser User { get; set; }
 
-        // [Required]
-        // public List<Subject> QualifiedSubjects { get; set; }
+        public ICollection<Subject> QualifiedSubjects { get; set; }
+
+        public ICollection<Schedule> MeetingSchedules { get; set; }
     }
 }

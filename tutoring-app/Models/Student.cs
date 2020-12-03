@@ -19,5 +19,7 @@ namespace tutoring_app.Models
 
         [Required]
         public string Grade { get; set; }
+
+        public ICollection<Schedule> MeetingSchedules { get; set; }
     }
 }

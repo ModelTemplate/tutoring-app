@@ -62,14 +62,14 @@ namespace tutoring_app.Migrations
                         principalSchema: "Identity",
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_User_User_Tutor_UserId",
                         column: x => x.Tutor_UserId,
                         principalSchema: "Identity",
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,7 +101,7 @@ namespace tutoring_app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     TutorId = table.Column<string>(nullable: true)
                 },

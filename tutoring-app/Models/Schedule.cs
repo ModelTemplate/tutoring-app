@@ -26,9 +26,5 @@ namespace tutoring_app.Models
         [ForeignKey("Id")]
         [Required]
         public Tutor Tutor { get; set; }
-
-        [ForeignKey("Id")]
-        [Required]
-        public Subject Subject { get; set; }
     }
 }

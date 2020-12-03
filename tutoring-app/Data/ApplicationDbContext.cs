@@ -58,6 +58,14 @@ namespace tutoring_app.Data
             {
                 entity.ToTable("UserTokens");
             });
+
+            // for every Tutor user, there is a one and only one associated ApplicationUser
+            // for every Student user, there is one and only one associated ApplicationUser
+            // for every Tutor user, there is one to many Subjects they are qualified at
+            // for every Tutor user, there is zero to many Schedule meetings
+            // for every Student user, there is zero to many Schedule meetings
+            // for every Schedule meeting, there is one and only one associated Tutor
+            // for every Schedule meeting, there is one and only one associated Student
         }
     }
 }
