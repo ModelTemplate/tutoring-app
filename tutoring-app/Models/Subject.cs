@@ -12,7 +12,6 @@ namespace tutoring_app.Models
     public class Subject
     {
         [Key]
-        [Required]
         public string Id { get; set; }
 
         [Required]

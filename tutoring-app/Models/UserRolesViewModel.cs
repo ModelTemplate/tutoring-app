@@ -16,5 +16,15 @@ namespace tutoring_app.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public IEnumerable<string> Roles { get; set; }
+
+        public string DisplayRoles()
+        {
+            string result = "";
+            for (int i = 0; i < Roles.Count() - 1; i++)
+            {
+                result += Roles.ElementAt(i) + ", ";
+            }
+            return result + Roles.ElementAt(Roles.Count() - 1);
+        }
     }
 }

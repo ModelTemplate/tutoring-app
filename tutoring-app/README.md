@@ -17,4 +17,5 @@ Password: Password1!
 <h3>Resources Referenced</h3>
 <ul>
 	<li>https://gavilan.blog/2019/07/18/accountcontroller-missing-razor-class-libraries-dotnet-cli-identity-scaffolding/</li>
+	<li>https://www.learnentityframeworkcore.com/configuration/fluent-api/ondelete-method</li>
 </ul>
