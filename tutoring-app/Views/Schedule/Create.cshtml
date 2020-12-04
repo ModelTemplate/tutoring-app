@@ -17,7 +17,7 @@
                 <select asp-for="SelectedStudentId" class="form-control">
                     @foreach (Student student in Model.Students)
                     {
-                        <option value=@student.ID>@student.FullName()</option>
+                        <option value=@student.Id>@student.FullName()</option>
                     }
                 </select><br />
             </div>
@@ -26,7 +26,7 @@
                 <select asp-for="SelectedTutorId" class="form-control">
                     @foreach (Tutor tutor in Model.Tutors)
                     {
-                        <option value=@tutor.ID>@tutor.FullName()</option>
+                        <option value=@tutor.Id>@tutor.FullName()</option>
                     }
                 </select><br />
             </div>
@@ -35,7 +35,7 @@
                 <select asp-for="SelectedSubjectId" class="form-control">
                     @foreach (Subject subject in Model.Subjects)
                     {
-                        <option value=@subject.ID>@subject.SubjectInfo()</option>
+                        <option value=@subject.Id>@subject.SubjectInfo()</option>
                     }
                 </select><br />
             </div>

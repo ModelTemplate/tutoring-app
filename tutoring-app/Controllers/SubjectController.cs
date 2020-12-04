@@ -34,7 +34,7 @@ namespace tutoring_app.Controllers
             }
 
             var subject = await _context.Subjects
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (subject == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace tutoring_app.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Level,Description")] Subject subject)
         {
-            if (id != subject.ID)
+            if (id != subject.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace tutoring_app.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SubjectExists(subject.ID))
+                    if (!SubjectExists(subject.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace tutoring_app.Controllers
             }
 
             var subject = await _context.Subjects
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (subject == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace tutoring_app.Controllers
 
         private bool SubjectExists(int id)
         {
-            return _context.Subjects.Any(e => e.ID == id);
+            return _context.Subjects.Any(e => e.Id == id);
         }
     }
 }
