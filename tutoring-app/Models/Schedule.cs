@@ -15,5 +15,7 @@ namespace tutoring_app.Models
         public Student Student { get; set; }
         public Tutor Tutor { get; set; }
         public Subject Subject { get; set; }
+
+        public string ScheduleInfo() { return Date.ToString() ; }
     }
 }

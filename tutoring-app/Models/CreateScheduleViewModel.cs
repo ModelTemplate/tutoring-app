@@ -15,5 +15,7 @@ namespace tutoring_app.Models
 
         [DisplayName("Appointment Date")]
         public DateTime Date { get; set; }
+
+        public string CreateScheduleConcate() { return "{" + Date.ToString() + "}" + " " + SelectedSubjectId; }
     }
 }

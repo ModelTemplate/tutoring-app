@@ -12,5 +12,7 @@ namespace tutoring_app.Models
             public string content { get; set; }
             public string author { get; set; }
             public int length { get; set; }
+
+            public string QuoteApiModelInfo() { return author + " " + content; }
     }
 }
