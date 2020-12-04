@@ -46,6 +46,20 @@ namespace tutoring_app.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Address (optional)")]
+            public string Address { get; set; }
+
+            [Phone]
+            [Display(Name = "Phone Number (optional)")]
+            public string Phone { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }

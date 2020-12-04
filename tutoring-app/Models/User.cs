@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,11 @@ namespace tutoring_app.Models
     public abstract class User
     {
         public int Id { get; set; }
+
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
+
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
