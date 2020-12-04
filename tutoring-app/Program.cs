@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using tutoring_app.Data;
 
 namespace tutoring_app
 {
@@ -44,10 +45,7 @@ namespace tutoring_app
         private async static Task Seed(IServiceProvider services)
         {
             var context = services.GetRequiredService<ApplicationDbContext>();
-            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-            await UsersAndRolesSeed.Initialize(userManager, roleManager);
-            await ContextSeed.Initialize(context);
+            await DbContextSeed.Initialize(context);
         }
     }
 }
