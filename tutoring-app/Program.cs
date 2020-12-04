@@ -44,8 +44,8 @@ namespace tutoring_app
 
         private async static Task Seed(IServiceProvider services)
         {
-            var context = services.GetRequiredService<ApplicationDbContext>();
-            await DbContextSeed.Initialize(context);
+            // var context = services.GetRequiredService<ApplicationDbContext>();
+            await DbContextSeed.Initialize(services);
         }
     }
 }

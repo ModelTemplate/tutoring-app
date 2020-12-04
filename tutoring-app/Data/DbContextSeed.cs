@@ -13,11 +13,17 @@ namespace tutoring_app.Data
     /// </summary>
     public static class DbContextSeed
     {
-        public async static Task Initialize(ApplicationDbContext context)
+        public async static Task Initialize(IServiceProvider services)
         {
-            await SeedSubjects(context);
-            await SeedStudents(context);
-            await SeedTutors(context);
+            using (var context = new ApplicationDbContext(
+                services.GetRequiredService<
+                    DbContextOptions<ApplicationDbContext>>()))
+            {
+
+                await SeedSubjects(context);
+                await SeedStudents(context);
+                await SeedTutors(context);
+            }
         }
 
         private async static Task SeedSubjects(ApplicationDbContext context)
