@@ -23,20 +23,19 @@ namespace tutoring_app
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                try
+                // try
                 {
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    RolesSeed.SeedRolesAsync(userManager, roleManager);
-                    RolesSeed.SeedAdminAsync(userManager, roleManager);
-                    ContextSeed.Initialize(services);
+                    UsersAndRolesSeed.Initialize(userManager, roleManager);
+                    ContextSeed.Initialize(context);
                 }
-                catch (Exception ex)
+/*                catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred seeding the DB.");
-                }
+                }*/
             }
 
             host.Run();

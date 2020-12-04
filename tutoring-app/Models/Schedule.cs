@@ -18,10 +18,10 @@ namespace tutoring_app.Models
         [Required]
         public DateTime Date { get; set; }
 
-        [ForeignKey("Id")]
+        // [ForeignKey("Id")]
         public Student Student { get; set; }
 
-        [ForeignKey("Id")]
+        // [ForeignKey("Id")]
         public Tutor Tutor { get; set; }
     }
 }

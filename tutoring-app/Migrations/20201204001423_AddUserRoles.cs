@@ -62,14 +62,14 @@ namespace tutoring_app.Migrations
                         principalSchema: "Identity",
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_User_User_Tutor_UserId",
                         column: x => x.Tutor_UserId,
                         principalSchema: "Identity",
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,6 +93,35 @@ namespace tutoring_app.Migrations
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Schedules",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    StudentId = table.Column<string>(nullable: true),
+                    TutorId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schedules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Schedules_User_StudentId",
+                        column: x => x.StudentId,
+                        principalSchema: "Identity",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Schedules_User_TutorId",
+                        column: x => x.TutorId,
+                        principalSchema: "Identity",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,40 +240,6 @@ namespace tutoring_app.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Schedules",
-                schema: "Identity",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Schedules", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Schedules_User_Id",
-                        column: x => x.Id,
-                        principalSchema: "Identity",
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Schedules_Subjects_Id",
-                        column: x => x.Id,
-                        principalSchema: "Identity",
-                        principalTable: "Subjects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Schedules_User_Id1",
-                        column: x => x.Id,
-                        principalSchema: "Identity",
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 schema: "Identity",
@@ -258,6 +253,18 @@ namespace tutoring_app.Migrations
                 schema: "Identity",
                 table: "RoleClaims",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schedules_StudentId",
+                schema: "Identity",
+                table: "Schedules",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Schedules_TutorId",
+                schema: "Identity",
+                table: "Schedules",
+                column: "TutorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Subjects_TutorId",
@@ -321,6 +328,10 @@ namespace tutoring_app.Migrations
                 schema: "Identity");
 
             migrationBuilder.DropTable(
+                name: "Subjects",
+                schema: "Identity");
+
+            migrationBuilder.DropTable(
                 name: "UserClaims",
                 schema: "Identity");
 
@@ -334,10 +345,6 @@ namespace tutoring_app.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserTokens",
-                schema: "Identity");
-
-            migrationBuilder.DropTable(
-                name: "Subjects",
                 schema: "Identity");
 
             migrationBuilder.DropTable(

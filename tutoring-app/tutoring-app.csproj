@@ -35,6 +35,12 @@
     <Compile Remove="Migrations\20201203051409_AddUserRoles.Designer.cs" />
     <Compile Remove="Migrations\20201203052046_AddUserRoles.cs" />
     <Compile Remove="Migrations\20201203052046_AddUserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20201203052606_AddUserRoles.cs" />
+    <Compile Remove="Migrations\20201203052606_AddUserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20201204001051_AddUserRoles.cs" />
+    <Compile Remove="Migrations\20201204001051_AddUserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20201204001131_AddUserRoles.cs" />
+    <Compile Remove="Migrations\20201204001131_AddUserRoles.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

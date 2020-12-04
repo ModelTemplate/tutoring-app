@@ -13,7 +13,7 @@ namespace tutoring_app.Models
     /// </summary>
     public class Tutor : ApplicationUser
     {
-        [ForeignKey("Id")]
+        // [ForeignKey("Id")]
         public virtual ApplicationUser User { get; set; }
 
         public ICollection<Subject> QualifiedSubjects { get; set; }

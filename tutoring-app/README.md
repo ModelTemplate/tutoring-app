@@ -18,4 +18,7 @@ Password: Password1!
 <ul>
 	<li>https://gavilan.blog/2019/07/18/accountcontroller-missing-razor-class-libraries-dotnet-cli-identity-scaffolding/</li>
 	<li>https://www.learnentityframeworkcore.com/configuration/fluent-api/ondelete-method</li>
+	<li>https://thomaslevesque.com/2018/09/25/asynchronous-initialization-in-asp-net-core-revisited/</li>
+	<li>https://github.com/iammukeshm/CustomUserManagement.MVC</li>
+	<li>https://tutexchange.com/how-to-customise-asp-net-core-identity/</li>
 </ul>

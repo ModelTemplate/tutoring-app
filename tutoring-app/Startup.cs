@@ -42,12 +42,6 @@ namespace tutoring_app
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 options.SignIn.RequireConfirmedAccount = true)
                 .AddDefaultUI()
-                /*
-                .AddUserStore<ApplicationUserStore>()
-                .AddRoleStore<ApplicationRoleStore>()
-                .AddRoleManager<ApplicationRoleManager>
-                .AddSignInManager<ApplicationSignInManager>()
-                */
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -58,9 +52,6 @@ namespace tutoring_app
                 options.AddPolicy("writepolicy",
                     builder => builder.RequireRole("Admin"));
             });
-
-            // CreateRolesAndUsers(services.BuildServiceProvider());
-            // CreateRolesAndUsers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,66 +87,3 @@ namespace tutoring_app
         }
     }
 }
-        
-        /*private async void CreateRolesAndUsers(*//*IServiceProvider serviceProvider*//*)
-        {
-            // var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            // var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
-
-            ApplicationDbContext context = new ApplicationDbContext(null);
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var userManager = new UserManager<ApplicationUser>(new ApplicationUserStore(context));
-
-            bool roleExists = await roleManager.RoleExistsAsync("Admin");
-
-            // creating Admin role
-            if (!roleExists)
-            {
-                var role = new IdentityRole
-                {
-                    Name = "Admin"
-                };
-                await roleManager.CreateAsync(role);
-
-                // creating admin superuser
-                var user = new IdentityUser
-                {
-                    UserName = "admin@admin.com",
-                    Email = "admin@admin.com",
-                    EmailConfirmed = true,
-                };
-                
-                string userPassword = "Password1!";
-                var result = await userManager.CreateAsync(user, userPassword);
-
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, "Admin");
-                }
-            }
-
-            roleExists = await roleManager.RoleExistsAsync("Tutor");
-
-            // creating Tutor role
-            if (!roleExists)
-            {
-                var role = new IdentityRole
-                {
-                    Name = "Tutor"
-                };
-                await roleManager.CreateAsync(role);
-            }
-
-            roleExists = await roleManager.RoleExistsAsync("Student");
-
-            // creating Student role
-            if (!roleExists)
-            {
-                var role = new IdentityRole
-                {
-                    Name = "Student"
-                };
-                await roleManager.CreateAsync(role);
-            }
-        }
-    }*/

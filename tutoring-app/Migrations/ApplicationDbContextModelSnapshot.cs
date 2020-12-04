@@ -239,7 +239,17 @@ namespace tutoring_app.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("StudentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TutorId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("TutorId");
 
                     b.ToTable("Schedules");
                 });
@@ -271,11 +281,9 @@ namespace tutoring_app.Migrations
                     b.HasBaseType("tutoring_app.Models.ApplicationUser");
 
                     b.Property<string>("Grade")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasIndex("UserId");
@@ -288,7 +296,6 @@ namespace tutoring_app.Migrations
                     b.HasBaseType("tutoring_app.Models.ApplicationUser");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnName("Tutor_UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -352,22 +359,11 @@ namespace tutoring_app.Migrations
                 {
                     b.HasOne("tutoring_app.Models.Student", "Student")
                         .WithMany("MeetingSchedules")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("tutoring_app.Models.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StudentId");
 
                     b.HasOne("tutoring_app.Models.Tutor", "Tutor")
                         .WithMany("MeetingSchedules")
-                        .HasForeignKey("Id")
-                        .HasConstraintName("FK_Schedules_User_Id1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TutorId");
                 });
 
             modelBuilder.Entity("tutoring_app.Models.Subject", b =>
@@ -381,18 +377,14 @@ namespace tutoring_app.Migrations
                 {
                     b.HasOne("tutoring_app.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("tutoring_app.Models.Tutor", b =>
                 {
                     b.HasOne("tutoring_app.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

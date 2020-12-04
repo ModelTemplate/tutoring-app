@@ -13,10 +13,10 @@ namespace tutoring_app.Models
     /// </summary>
     public class Student : ApplicationUser
     {
-        [ForeignKey("Id")]
+        // [ForeignKey("Id")]
         public virtual ApplicationUser User { get; set; }
 
-        [Required]
+        // [Required]
         public string Grade { get; set; }
 
         public ICollection<Schedule> MeetingSchedules { get; set; }
