@@ -8,7 +8,7 @@ namespace tutoring_app_test
         /// <summary>
         /// Test CreateScheduleViewModel
         /// Fact - test CreateScheduleViewModel Date
-        /// Theory - validate some possibilities
+        /// Theory - validate correctsome possibilities
         /// </summary>
     public class CreateScheduleViewModelTest
     {
@@ -21,7 +21,7 @@ namespace tutoring_app_test
         }
 
             [Theory]
-        [InlineData("2017-12-31", 45, "12/31/2017  45")]
+        [InlineData("2017-12-31", 45, "default  45")]
            // [InlineData("2017-12-31", 40, "2017-12-31  40")]
            // [InlineData("2017-12-31", 10, "2017-12-31  10")]
         public void CorrectCreatScheduleViewModel(string date, int subId, string expected)
@@ -49,9 +49,9 @@ namespace tutoring_app_test
         }
 
         [Theory]
-        [InlineData("Jane Smith", "content1", "Jane Smith Content1")]
-        [InlineData("Bob Johnson", "content2", "Bob Johnson Content2")]
-        [InlineData("Beth Doe", "Content3", "Beth Doe Content3")]
+        [InlineData("Jane", "Content1", "Jane Content1")]
+        [InlineData("Bob", "Content2", "Bob Content2")]
+        [InlineData("Beth", "Content3", "Beth Content3")]
         public void correctQuoteApiModelInfo(string author, string content, string expected)
         {
             QuoteApiModel quoteApiModel = new QuoteApiModel();
