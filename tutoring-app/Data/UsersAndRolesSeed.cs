@@ -71,7 +71,7 @@ namespace tutoring_app.Data
                     PhoneNumberConfirmed = true
                 };
 
-                IdentityResult result = userManager.CreateAsync(user, "12345Aa!").Result;
+                var result = await userManager.CreateAsync(user, "12345Aa!");
 
                 if (result.Succeeded)
                 {
@@ -92,7 +92,7 @@ namespace tutoring_app.Data
                     PhoneNumberConfirmed = true
                 };
                 
-                IdentityResult result = userManager.CreateAsync(user, "12345Aa!").Result;
+                var result = await userManager.CreateAsync(user, "12345Aa!");
 
                 if (result.Succeeded)
                 {

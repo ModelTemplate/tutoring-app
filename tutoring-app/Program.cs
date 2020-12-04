@@ -25,11 +25,7 @@ namespace tutoring_app
                 var services = scope.ServiceProvider;
                 // try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    UsersAndRolesSeed.Initialize(userManager, roleManager);
-                    ContextSeed.Initialize(context);
+                    Seed(services);
                 }
 /*                catch (Exception ex)
                 {
@@ -47,5 +43,14 @@ namespace tutoring_app
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        private async static Task Seed(IServiceProvider services)
+        {
+            var context = services.GetRequiredService<ApplicationDbContext>();
+            var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            await UsersAndRolesSeed.Initialize(userManager, roleManager);
+            await ContextSeed.Initialize(context);
+        }
     }
 }

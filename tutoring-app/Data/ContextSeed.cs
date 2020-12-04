@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using tutoring_app.Data;
@@ -12,7 +13,7 @@ namespace tutoring_app.Data
     /// </summary>
     public static class ContextSeed
     {
-        public async static void Initialize(ApplicationDbContext context)
+        public async static Task Initialize(ApplicationDbContext context)
         {
             // context.Database.EnsureCreated();
 
