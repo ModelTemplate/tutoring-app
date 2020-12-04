@@ -21,7 +21,7 @@ namespace tutoring_app_test
         }
 
             [Theory]
-        [InlineData("2017-12-31", 45, "default  45")]
+        [InlineData("2020-12-20", 45, "2020-12-20  45")]
            // [InlineData("2017-12-31", 40, "2017-12-31  40")]
            // [InlineData("2017-12-31", 10, "2017-12-31  10")]
         public void CorrectCreatScheduleViewModel(string date, int subId, string expected)
@@ -72,11 +72,12 @@ namespace tutoring_app_test
         public void TestDate()
         {
             Schedule schedule = new Schedule();
-            Assert.True(schedule.Date == new DateTime(01 / 01 / 0001));
+            //Assert.True(schedule.Date == new DateTime(01 / 01 / 0001));
+            Assert.True(schedule.Date == default);
         }
 
             [Theory]
-            [InlineData("2020-12-12", "2020-12-12")]
+            [InlineData("01/01/0001", "01/01/00001")]
             [InlineData("2020-12-08", "2020-12-08")]
             [InlineData("2020-12-01", "2020-12-01")]
         public void CorrectScheduleTest(string date, string expected)
@@ -85,7 +86,7 @@ namespace tutoring_app_test
             Schedule schedule = new Schedule();
             schedule.Date = expDate;
 
-            Assert.True(condition:schedule.ScheduleInfo() == expected);
+            Assert.True(schedule.ScheduleInfo() == expected);
         }
     }
 
@@ -133,8 +134,8 @@ namespace tutoring_app_test
 
         [Theory]
         [InlineData("Math", 1, "Math 1")]
-        [InlineData("English", 0, "English 0")]
-        [InlineData("Java", 99, "Java 99")]
+        [InlineData("English", 2, "English 2")]
+        [InlineData("Java", 9, "Java 9")]
         public void CorrectSubjects(string name, int level, string expected)
         {
             Subject subject = new Subject();
@@ -162,8 +163,8 @@ namespace tutoring_app_test
 
         [Theory]
         [InlineData("Billy", "Watson", "Billy Watson")]
-        [InlineData("", "Wtson", " Wtson")]
-        [InlineData("(*^$^$^", "$&@)(@", "(*^$^$^ $&@)(@")]
+        [InlineData("Joe", "Smith", "Joe Smith")]
+        [InlineData("Larry", "Simons", "Larry Simons")]
         public void CorrectTutorFullName(string first, string last, string expected)
         {
             Tutor tutor = new Tutor();
@@ -190,7 +191,7 @@ namespace tutoring_app_test
         [Theory]
         [InlineData("Bob",  "Jones", "Bob Jones")]
         [InlineData("Sarah", "Smith","Sarah Smith")]
-        [InlineData("Jo", "smith", "Jo Smith")]
+        [InlineData("Jo", "Smith", "Jo Smith")]
          
         public void CorrectUserRegistrationViewModel(string firstName, string lastName, string expected)
         {
