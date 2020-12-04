@@ -45,7 +45,7 @@ namespace tutoring_app_test
         public void AuthorName()
         {
             QuoteApiModel quoteApiModel = new QuoteApiModel();
-            Assert.True(quoteApiModel.author == null);
+            Assert.True(quoteApiModel.Author == null);
         }
 
         [Theory]
@@ -55,8 +55,8 @@ namespace tutoring_app_test
         public void correctQuoteApiModelInfo(string author, string content, string expected)
         {
             QuoteApiModel quoteApiModel = new QuoteApiModel();
-            quoteApiModel.author = author;
-            quoteApiModel.content = content;
+            quoteApiModel.Author = author;
+            quoteApiModel.Content = content;
             Assert.True(quoteApiModel.QuoteApiModelInfo() == expected);
         }
     }
