@@ -7,12 +7,12 @@ namespace tutoring_app.Models
 {
     public class QuoteApiModel
     {
-            public string _id { get; set; }
-            public string[] tags { get; set; }
-            public string content { get; set; }
-            public string author { get; set; }
-            public int length { get; set; }
+            public string Id { get; set; }
+            public string[] Tags { get; set; }
+            public string Content { get; set; }
+            public string Author { get; set; }
+            public int Length { get; set; }
 
-            public string QuoteApiModelInfo() { return author + " " + content; }
+            public string QuoteApiModelInfo() { return Author + " " + Content; }
     }
 }

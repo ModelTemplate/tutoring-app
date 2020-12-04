@@ -21,8 +21,8 @@ namespace tutoring_app.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string qouteString = "";
-            string qouteAuthor = "";
+            string quoteString = "";
+            string quoteAuthor = "";
             HttpClient client = new HttpClient();
 
             try
@@ -31,14 +31,15 @@ namespace tutoring_app.Controllers
 
                 if (string.IsNullOrEmpty(response))
                 {
-                    Debug.WriteLine("Failed to receive response from the quote api");
+                    Debug.WriteLine("Failed to receive response from the Quote API.");
                 }
 
-                QuoteApiModel qoute = Newtonsoft.Json.JsonConvert.DeserializeObject<QuoteApiModel>(response);
-                if(qoute != null)
+                QuoteApiModel quote = Newtonsoft.Json.JsonConvert.DeserializeObject<QuoteApiModel>(response);
+                
+                if(quote != null)
                 {
-                    qouteString = qoute.content;
-                    qouteAuthor = qoute.author;
+                    quoteString = quote.Content;
+                    quoteAuthor = quote.Author;
                 }
             }
             catch (HttpRequestException ex)
@@ -46,8 +47,8 @@ namespace tutoring_app.Controllers
                 throw ex;
             }
 
-            ViewData["QouteString"] = qouteString;
-            ViewData["QouteAuthor"] = qouteAuthor;
+            ViewData["QuoteString"] = quoteString;
+            ViewData["QuoteAuthor"] = quoteAuthor;
 
             return View();
         }

@@ -174,34 +174,4 @@ namespace tutoring_app_test
             Assert.True(tutor.FullName() == expected);
         }
     }
-
-    /// <summary>
-    /// Test for UserRegisterationViewModel
-    /// Fact - validate Name
-    /// Theory - validate for correct UserRegistrationViewModel info
-    /// </summary>
-    public class UserRegistrationViewModelTest
-    {
-        [Fact]
-        public void DefaultName()
-        {
-            UserRegistrationViewModel userRegistrationViewModel = new UserRegistrationViewModel();
-            Assert.True(userRegistrationViewModel.FirstName == null);
-        }
-        [Theory]
-        [InlineData("Bob",  "Jones", "Bob Jones")]
-        [InlineData("Sarah", "Smith","Sarah Smith")]
-        [InlineData("Jo", "Smith", "Jo Smith")]
-         
-        public void CorrectUserRegistrationViewModel(string firstName, string lastName, string expected)
-        {
-            
-            UserRegistrationViewModel userRegistrationViewModel = new UserRegistrationViewModel();
-            userRegistrationViewModel.FirstName = firstName;
-            userRegistrationViewModel.LastName = lastName;
-
-            Assert.True(userRegistrationViewModel.FullName() == expected);
-            
-        }
-    }
 }
