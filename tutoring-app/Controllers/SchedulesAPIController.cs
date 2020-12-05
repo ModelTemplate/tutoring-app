@@ -25,14 +25,14 @@ namespace tutoring_app.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedules()
         {
-            return await _context.Schedules.ToListAsync();
+            return await _context.Schedules.Include("Student").Include("Tutor").Include("Subject").ToListAsync();
         }
 
         // GET: api/SchedulesAPI/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Schedule>> GetSchedule(int id)
         {
-            var schedule = await _context.Schedules.FindAsync(id);
+            var schedule = await _context.Schedules.Include("Student").Include("Tutor").Include("Subject").FirstOrDefaultAsync(m => m.Id == id);
 
             if (schedule == null)
             {
