@@ -5,11 +5,11 @@ using tutoring_app.Models;
 
 namespace tutoring_app_test
 {
-        /// <summary>
-        /// Test CreateScheduleViewModel
-        /// Fact - test CreateScheduleViewModel Date
-        /// Theory - validate correctsome possibilities
-        /// </summary>
+    /// <summary>
+    /// Test CreateScheduleViewModel
+    /// Fact - test CreateScheduleViewModel Date
+    /// Theory - validate correctsome possibilities
+    /// </summary>
     public class CreateScheduleViewModelTest
     {
         [Fact]
