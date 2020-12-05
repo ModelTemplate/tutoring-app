@@ -13,9 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-
-
-
 namespace tutoring_app
 {
     public class Startup
@@ -37,15 +34,15 @@ namespace tutoring_app
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            //facebook
+
+            // for Facebook login API
+            Console.WriteLine("AppID:::::: " );
             services.AddAuthentication()
                 .AddFacebook(options =>
             {
-                options.AppId = Configuration["App:FacebookClientId"];
-                options.ClientSecret = Configuration["App:FAcebookClientSecret"];
+                options.AppId = "1026050374529913"; //+ Configuration["App: FacebookClientId"]
+                options.ClientSecret = "730c10b6e40f30dc3d63dcfacfd38685";
             });
-               
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,9 +61,7 @@ namespace tutoring_app
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            //use facebook
             
-
             app.UseRouting();
 
             app.UseAuthentication();

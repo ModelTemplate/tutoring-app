@@ -37,7 +37,7 @@ namespace tutoring_app.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
                 return NotFound();
@@ -95,7 +95,7 @@ namespace tutoring_app.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ID,FirstName,LastName,Address,Phone,Email")] Student student)
         {
-            if (id != student.ID)
+            if (id != student.Id)
             {
                 return NotFound();
             }
@@ -109,7 +109,7 @@ namespace tutoring_app.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.ID))
+                    if (!StudentExists(student.Id))
                     {
                         return NotFound();
                     }
@@ -133,7 +133,7 @@ namespace tutoring_app.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (student == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace tutoring_app.Controllers
 
         private bool StudentExists(int id)
         {
-            return _context.Students.Any(e => e.ID == id);
+            return _context.Students.Any(e => e.Id == id);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace tutoring_app.Controllers
             }
 
             var schedule = await _context.Schedules.Include("Student").Include("Tutor").Include("Subject")
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (schedule == null)
             {
                 return NotFound();
@@ -117,7 +117,7 @@ namespace tutoring_app.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Date")] Schedule schedule)
         {
-            if (id != schedule.ID)
+            if (id != schedule.Id)
             {
                 return NotFound();
             }
@@ -131,7 +131,7 @@ namespace tutoring_app.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScheduleExists(schedule.ID))
+                    if (!ScheduleExists(schedule.Id))
                     {
                         return NotFound();
                     }
@@ -155,7 +155,7 @@ namespace tutoring_app.Controllers
             }
 
             var schedule = await _context.Schedules.Include("Student").Include("Tutor").Include("Subject")
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (schedule == null)
             {
                 return NotFound();
@@ -178,7 +178,7 @@ namespace tutoring_app.Controllers
 
         private bool ScheduleExists(int id)
         {
-            return _context.Schedules.Any(e => e.ID == id);
+            return _context.Schedules.Any(e => e.Id == id);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace tutoring_app.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSchedule(int id, Schedule schedule)
         {
-            if (id != schedule.ID)
+            if (id != schedule.Id)
             {
                 return BadRequest();
             }
@@ -83,7 +83,7 @@ namespace tutoring_app.Controllers
             _context.Schedules.Add(schedule);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSchedule", new { id = schedule.ID }, schedule);
+            return CreatedAtAction("GetSchedule", new { id = schedule.Id }, schedule);
         }
 
         // DELETE: api/SchedulesAPI/5
@@ -104,7 +104,7 @@ namespace tutoring_app.Controllers
 
         private bool ScheduleExists(int id)
         {
-            return _context.Schedules.Any(e => e.ID == id);
+            return _context.Schedules.Any(e => e.Id == id);
         }
     }
 }
