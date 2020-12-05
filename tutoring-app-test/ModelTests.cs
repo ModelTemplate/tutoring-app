@@ -20,17 +20,17 @@ namespace tutoring_app_test
             Assert.True(createScheduleViewModel.Date == default);
         }
 
-            [Theory]
-        [InlineData("2020-12-20", 45, "2020-12-20  45")]
-           // [InlineData("2017-12-31", 40, "2017-12-31  40")]
-           // [InlineData("2017-12-31", 10, "2017-12-31  10")]
-        public void CorrectCreatScheduleViewModel(string date, int subId, string expected)
+        [Theory]
+        [InlineData("2020-12-20", 45, "{12/20/2020 12:00:00 AM} 45")]
+        [InlineData("2017-12-31", 40, "{12/31/2017 12:00:00 AM} 40")]
+        [InlineData("2017-12-31", 10, "{12/31/2017 12:00:00 AM} 10")]
+        public void CorrectCreateScheduleViewModel(string date, int subId, string expected)
         {
-                CreateScheduleViewModel createScheduleViewModel = new CreateScheduleViewModel();
-                var expDate = DateTime.Parse(date);
-                createScheduleViewModel.Date = expDate;
-                createScheduleViewModel.SelectedSubjectId = subId;
-                Assert.True(createScheduleViewModel.CreateScheduleConcate() == expected);
+            CreateScheduleViewModel createScheduleViewModel = new CreateScheduleViewModel();
+            var expDate = DateTime.Parse(date);
+            createScheduleViewModel.Date = expDate;
+            createScheduleViewModel.SelectedSubjectId = subId;
+            Assert.True(createScheduleViewModel.CreateScheduleConcate() == expected);
         }
     }
 
@@ -76,10 +76,10 @@ namespace tutoring_app_test
             Assert.True(schedule.Date == default);
         }
 
-            [Theory]
-            [InlineData("01/01/0001", "01/01/00001")]
-            [InlineData("2020-12-08", "2020-12-08")]
-            [InlineData("2020-12-01", "2020-12-01")]
+        [Theory]
+        [InlineData("01/01/0001", "1/1/0001 12:00:00 AM")]
+        [InlineData("2020-12-08", "12/8/2020 12:00:00 AM")]
+        [InlineData("2020-12-01", "12/1/2020 12:00:00 AM")]
         public void CorrectScheduleTest(string date, string expected)
         {
             var expDate = DateTime.Parse(date);
@@ -145,7 +145,6 @@ namespace tutoring_app_test
             Assert.True(subject.SubjectInfo() == expected);
         }
     }
-
 
     /// <summary>
     /// Test for Tutor

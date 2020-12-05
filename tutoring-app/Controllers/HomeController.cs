@@ -25,6 +25,7 @@ namespace tutoring_app.Controllers
             string quoteAuthor = "";
             HttpClient client = new HttpClient();
 
+            // using external API to generate quotes
             try
             {
                 var response = await client.GetStringAsync("https://api.quotable.io/random");
